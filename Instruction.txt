@@ -1,0 +1,89 @@
+# OLDeath Wiki (Install and cfg guide)
+
+#Install
+
+1. We transfer the JAR file to the plugins folder and restart the server.
+
+Ready! The plugin is installed!
+
+And now to the config settings, in order to reload the plugin without third-party plugins or rebooting the server, you can use the /oldeath reload command.
+The command simply reloads the plugin.
+
+Let's move on to the config.
+onPlayerDeath - this section concerns everything that happens when the player dies, and not when he is reborn.
+onPlayerDeath:
+
+SaveInventory: true/false - Allows you to enable or disable saving things upon death [DUPE FIXED].
+KeepLevel: true/false - Allows you to to enable or disable maintain your experience level after death.
+DroppedExp: "0" - Allows with KeepLevel enabled to take as many level points as you specify.
+RespawnOnMoment: true - Allows you to turn off the main mechanic of the plugin - instant revival.
+DisableMinecraftDeathMessage: true - Disables vanilla player death messages.
+
+onPlayerRespawn - section when the player has already RETURNED.
+onPlayerRespawn:
+
+Title: "&aВоскресье!" - Full screen message on revival.
+Subtitle: "" - The message below the caption in Title. This is the sub-heading.
+TitleFadeIn, TitleFadeOut, TitleStay - You can play with these parameters. First - for how long the inscription will appear, second - for how long it will go away, and 3rd - for how long the inscription will be shown. (Works together with subtitle)
+ActionBar: "" - Parameter to customize the message when resurrected above the player bar.
+gamemodeAfterRespawn: Survival - What gamemode will be after respawning.
+Chat: "" - Parameter to customize the message when resurrecting in chat.
+
+messages - Command messages.
+messages:
+configReloaded: "&aКонфигурация OLDeath перезагружена." - message about reloading the plugin.
+noPermission: "&cУ вас нет прав для выполнения этой команды." - no permission for this command.
+onlyPlayer: "&cЭту команду может использовать только игрок." - the command can only be used by a player.
+
+
+Report bug, issue and more - https://discord.gg/GGDWbD3pu6.
+
+I am trying to improve this plugin and finalize it. If you want to throw an idea, you can write it to our discord :).
+
+Oluni_Official - 28.07.24 ©
+
+
+# OLDeath Wiki (руководство по установке и cfg)
+
+#Install
+
+1. Переносим JAR-файл в папку plugins и перезапускаем сервер.
+
+Готово! Плагин установлен!
+
+А теперь перейдем к настройкам конфигурации. Для того чтобы перезагрузить плагин без сторонних плагинов и перезагрузки сервера, вы можете использовать команду /oldeath reload.
+Эта команда просто перезагрузит плагин.
+
+Перейдем к конфигурации.
+onPlayerDeath - этот раздел касается всего, что происходит, когда игрок умирает, а не когда он возрождается.
+onPlayerDeath:
+
+SaveInventory: true/false - позволяет включить или отключить сохранение вещей после смерти [DUPE FIXED].
+KeepLevel: true/false - Позволяет включить или отключить сохранение уровня опыта после смерти.
+DroppedExp: «0» - Позволяет при включенном KeepLevel брать столько очков уровня, сколько вы укажете.
+RespawnOnMoment: true - Позволяет отключить основную механику плагина - мгновенное возрождение.
+DisableMinecraftDeathMessage: true - отключает ванильные сообщения о смерти игрока.
+
+onPlayerRespawn - секция, когда игрок уже ВОЗВРАЩАЕТСЯ.
+onPlayerRespawn:
+
+Title: «&aВоскресье!». - Полноэкранное сообщение при возрождении.
+Подзаголовок: «» - Сообщение под надписью в заголовке. Это подзаголовок.
+TitleFadeIn, TitleFadeOut, TitleStay - Вы можете играть с этими параметрами. Первый - на какое время появится надпись, второй - на какое время она исчезнет, и третий - на какое время надпись будет показана. (Работает вместе с субтитрами)
+gamemodeAfterRespawn: Survival- какой после респавна будет режим гейммода.
+ActionBar: «» - Параметр для настройки сообщения при воскрешении над панелью игрока.
+Chat: «» - Параметр для настройки сообщения при воскрешении в чате.
+
+messages - Командные сообщения.
+messages:
+configReloaded: «&aКонфигурация OLDeath перезагружена». - сообщение о перезагрузке плагина.
+noPermission: «&cУ вас нет прав для выполнения этой команды». - Нет разрешения для этой команды.
+onlyPlayer: «&cЭту команду может использовать только игрок». - команда может быть использована только игроком.
+
+
+
+Сообщить об ошибке, проблеме и многом другом - https://discord.gg/GGDWbD3pu6.
+
+Я пытаюсь улучшить этот плагин и доработать его. Если вы хотите подкинуть идею, то можете написать ее в наш дискорд :).
+
+Oluni_Official - 28.07.24 ©
