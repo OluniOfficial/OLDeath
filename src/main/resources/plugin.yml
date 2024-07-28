@@ -1,0 +1,14 @@
+name: OLDeath
+version: '1.0'
+authors:
+  - Oluni_Official
+  - Pazlik
+main: oluni.official.minecraft.plugin.ol.oldeath.OLDeath
+api-version: '1.13'
+commands:
+  oldeath:
+    permission: oldeath.reload
+    usage: /<command> reload
+permissions:
+  oldeath.reload:
+    default: op
