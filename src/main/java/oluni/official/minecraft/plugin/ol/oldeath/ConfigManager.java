@@ -1,11 +1,14 @@
 package oluni.official.minecraft.plugin.ol.oldeath;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ConfigManager {
 
@@ -50,6 +53,8 @@ public class ConfigManager {
         config.addDefault("onPlayerRespawn.gamemodeAfterRespawn", "Survival");
         config.addDefault("onPlayerRespawn.ActionBar", "");
         config.addDefault("onPlayerRespawn.Chat", "");
+        config.addDefault("onPlayerRespawn.sound", true);
+        config.addDefault("onPlayerRespawn.soundOnRespawn", "BLOCK_NOTE_BLOCK_BASS");
         config.addDefault("messages.configReloaded", "&aКонфигурация OLDeath перезагружена.");
         config.addDefault("messages.noPermission", "&cУ вас нет прав для выполнения этой команды.");
         config.addDefault("messages.onlyPlayer", "&cЭту команду может использовать только игрок.");
@@ -71,6 +76,8 @@ public class ConfigManager {
         config.set("onPlayerRespawn.gamemodeAfterRespawn", "Survival");
         config.set("onPlayerRespawn.ActionBar", "");
         config.set("onPlayerRespawn.Chat", "");
+        config.set("onPlayerRespawn.sound", true);
+        config.set("onPlayerRespawn.soundOnRespawn", "BLOCK_NOTE_BLOCK_BASS");
         config.set("messages.configReloaded", "&aКонфигурация OLDeath перезагружена.");
         config.set("messages.noPermission", "&cУ вас нет прав для выполнения этой команды.");
         config.set("messages.onlyPlayer", "&cЭту команду может использовать только игрок.");
@@ -89,5 +96,19 @@ public class ConfigManager {
 
     public FileConfiguration getConfig() {
         return config;
+    }
+
+    public String translateHexColorCodes(String message) {
+        Pattern hexPattern = Pattern.compile("&#([A-Fa-f0-9]{6})");
+        Matcher matcher = hexPattern.matcher(message);
+        StringBuffer buffer = new StringBuffer();
+
+        while (matcher.find()) {
+            String group = matcher.group(1);
+            matcher.appendReplacement(buffer, net.md_5.bungee.api.ChatColor.of("#" + group).toString());
+        }
+
+        matcher.appendTail(buffer);
+        return ChatColor.translateAlternateColorCodes('&', buffer.toString());
     }
 }
