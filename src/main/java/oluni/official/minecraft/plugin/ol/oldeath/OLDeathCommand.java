@@ -1,12 +1,9 @@
 package oluni.official.minecraft.plugin.ol.oldeath;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class OLDeathCommand implements CommandExecutor {
 
@@ -22,9 +19,9 @@ public class OLDeathCommand implements CommandExecutor {
             if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
                 if (sender.hasPermission("oldeath.reload")) {
                     configManager.loadConfig();
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(configManager.getConfig().getString("messages.configReloaded"))));
+                    sender.sendMessage(configManager.translateHexColorCodes(configManager.getConfig().getString("messages.configReloaded")));
                 } else {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(configManager.getConfig().getString("messages.noPermission"))));
+                    sender.sendMessage(configManager.translateHexColorCodes(configManager.getConfig().getString("messages.noPermission")));
                 }
                 return true;
             }
