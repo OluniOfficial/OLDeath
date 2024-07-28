@@ -1,8 +1,8 @@
 package oluni.official.minecraft.plugin.ol.oldeath;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -70,22 +70,33 @@ public class DeathListener implements Listener {
     }
 
     private void sendRespawnMessages(Player player) {
-        String title = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(configManager.getConfig().getString("onPlayerRespawn.Title")));
-        String subtitle = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(configManager.getConfig().getString("onPlayerRespawn.Subtitle")));
+        String title = configManager.translateHexColorCodes(configManager.getConfig().getString("onPlayerRespawn.Title"));
+        String subtitle = configManager.translateHexColorCodes(configManager.getConfig().getString("onPlayerRespawn.Subtitle"));
         int fadeIn = configManager.getConfig().getInt("onPlayerRespawn.TitleFadeIn");
         int stay = configManager.getConfig().getInt("onPlayerRespawn.TitleStay");
         int fadeOut = configManager.getConfig().getInt("onPlayerRespawn.TitleFadeOut");
 
         player.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
 
-        String actionBar = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(configManager.getConfig().getString("onPlayerRespawn.ActionBar")));
+        String actionBar = configManager.translateHexColorCodes(configManager.getConfig().getString("onPlayerRespawn.ActionBar"));
         if (!actionBar.isEmpty()) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(actionBar));
         }
 
-        String chatMessage = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(configManager.getConfig().getString("onPlayerRespawn.Chat")));
+        String chatMessage = configManager.translateHexColorCodes(configManager.getConfig().getString("onPlayerRespawn.Chat"));
         if (!chatMessage.isEmpty()) {
             player.sendMessage(chatMessage);
+        }
+
+        boolean playSound = configManager.getConfig().getBoolean("onPlayerRespawn.sound");
+        if (playSound) {
+            String soundName = configManager.getConfig().getString("onPlayerRespawn.soundOnRespawn");
+            try {
+                Sound sound = Sound.valueOf(soundName);
+                player.playSound(player.getLocation(), sound, 1.0f, 1.0f);
+            } catch (IllegalArgumentException e) {
+                plugin.getLogger().warning("Invalid sound name in config: " + soundName);
+            }
         }
     }
 }
